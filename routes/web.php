@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/test',function(){
+    $targetName='target-name';
+    $name=User::query()
+        ->where('name','=',$targetName)
+        ->first();
+    return view('test',['name'=> $name ?? 'default-name']);
 });
